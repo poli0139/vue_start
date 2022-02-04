@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attribute binding</title>
+    <style type="text/css">
+      .is-loading {
+        background: hotpink;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- <button @:title="title">Hover me</button> -->
+      <button :class="{'is-loading': isLoading}" @click="toggleClass">
+        I am a button
+      </button>
+      <button :disabled="isDisabled" @click="enableDisable">Disable me</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: '#root',
+
+        data: {
+          //   title: 'NOw the title is a new one',
+          //   className: 'color-red',
+          isLoading: false,
+          isDisabled: false,
+        },
+
+        methods: {
+          toggleClass() {
+            this.isLoading = true;
+          },
+          enableDisable() {
+            this.isDisabled = true;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

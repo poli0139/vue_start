@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Components</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css"
+    />
+    <style>
+      body {
+        margin-top: 4em;
+      }
+      .text-box {
+        background: white;
+        border-radius: 10px;
+        padding: 2rem;
+        margin: 0 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="container">
+      <!-- components with vue  -->
+
+      <!-- <task-list></task> -->
+
+      <!-- bulma components -->
+      <!-- MESSAGES (EXERCISE #1)-->
+
+      <message title="here is the title" body="some text goes here"></message>
+      <message title="new mesage" body="some text goes here"></message>
+      <message title="main stuff" body="some text goes here"></message>
+      <message title="hello" body="some text goes here"></message>
+
+      <!-- MODAL (EXERCISE #2) -->
+
+      <modal v-if="showModal" @closed="showModal=false">
+        <p>basically any text</p>
+      </modal>
+      <button @click="showModal=true">Show modal</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+    <script src="components.js"></script>
+  </body>
+</html>
