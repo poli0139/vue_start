@@ -1,12 +1,13 @@
-Vue.component('tabs',{
-    template: `
+Vue.component('tabs', {
+  template:
+    // creating li for each tab in tabs array, applying class is-active, if selected is true
+    `
     <div>
     <div class="tabs">
   <ul>
-    <li class="is-active"><a>Pictures</a></li>
-    <li><a>Music</a></li>
-    <li><a>Videos</a></li>
-    <li><a>Documents</a></li>
+    <li v-for="tab in tabs" :class="{'is-active': tab.isActive}">
+      <a  @click="selectTab(tab)" >{{tab.name}}</a>
+    </li>
   </ul>
 </div>
 
@@ -15,18 +16,52 @@ Vue.component('tabs',{
 </div></div>
     `,
 
-    mounted(){
-        console.log(this.$children)
-    }
-})
-  
-Vue.component('tab',{
-template: `
-<div><slot></slot></div>
-`
-})
-  
-  new Vue({
-    el: '#root'
+  data() {
+    return {
+      tabs: [],
+    };
+  },
 
-})
+  created() {
+    this.tabs = this.$children;
+  },
+
+  methods: {
+    selectTab(selectedTab) {
+      this.tabs.forEach((tab) => {
+        tab.isActive = (tab.name === selectedTab.name);
+      });
+    },
+  },
+});
+
+Vue.component('tab', {
+  template: `
+<div v-show="isActive"><slot></slot></div>
+`,
+  props: {
+    name: { required: true },
+    selected: { selected: false },
+  },
+
+  data(){
+    return{
+          isActive: false
+
+    }
+  },
+
+  // computed:{
+
+  //   href(){
+  //       return '#'+ this.name.toLowerCase().replace(/ /g, '-')
+  //   }
+  // },
+  mounted(){
+    this.isActive= this.selected
+  }
+});
+
+new Vue({
+  el: '#root',
+});
